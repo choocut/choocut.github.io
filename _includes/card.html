@@ -7,13 +7,13 @@
     <div id="carousel{{post.slug}}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
       <div class="carousel-indicators">
         {% assign gallery = site.static_files | where_exp:"item", "item.path contains post.gallery "  %}{% for file in gallery %}{% assign filenameparts = file.path | split: "/" %}{% assign filename = filenameparts | last | replace: file.extname,"" %}
-        <button type="button" data-bs-target="#carousel{{post.slug}}" data-bs-slide-to="{{forloop.index}}" {%if forloop.index == 1 %} class="active" aria-current="true" {%endif%} aria-label="{{filename}}"></button>
+        <button type="button" data-bs-target="#carousel{{post.slug}}" data-bs-slide-to="{{forloop.index | minus: 1}}" {%if forloop.index == 1 %} class="active" aria-current="true" {%endif%} aria-label="{{filename}}"></button>
         {% endfor %}
       </div>
       <div class="carousel-inner">
         {% assign gallery = site.static_files | where_exp:"item", "item.path contains post.gallery "  %}{% for file in gallery %}{% assign filenameparts = file.path | split: "/" %}{% assign filename = filenameparts | last | replace: file.extname,"" %}
         <div class="carousel-item {%if forloop.index == 1 %}active{%endif%}">
-          <img src="{{ file.path | relative_url }}" class="d-block w-100" alt="...">
+          <img src="//images.weserv.nl/?url=choocut.github.io{{ file.path | relative_url }}&w=500&output=jpg&q=50" class="d-block w-100" alt="...">
         </div>
         {% endfor %}
       </div>
