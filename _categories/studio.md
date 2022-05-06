@@ -1,0 +1,4 @@
+---
+title: استودیو
+slug: studio
+---

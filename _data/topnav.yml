@@ -1,0 +1,13 @@
+- name: home
+  label: صفحه نخست
+  link: /
+  faClass: "bi bi-house-fill"
+- name: about
+  label: درباره
+  link: /about/
+- name: articles
+  label: نمونه کارها
+  link: '/portfolio/'
+- name: contact
+  label: تماس
+  link: /contact/

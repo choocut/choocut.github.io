@@ -1,0 +1,39 @@
+---
+layout: default
+---
+{% for category in page.categories %}{% assign cat = site.categories | where: 'slug', category | first %}
+{% if cat %}{% assign botcat = cat.title %}{% assign botcaturl = cat.url %}{% endif %}
+{% endfor %}
+{%assign pagecollection = site.collections| where: "label", page.collection | first %}
+<section class="m-5">
+  <div class="container bg-white-75 p-3" >
+    <div class="row ">
+      <div class="col-12">
+        <h1>{{page.title}}</h1>
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/"><i class="bi bi-house-fill"></i></a></li>
+            {%if botcat%}<li class="breadcrumb-item"><a href="{{botcaturl}}">{{botcat}}</a></li>{%endif%}
+            <li class="breadcrumb-item active" aria-current="page">{{page.title}}</li>
+          </ol>
+        </nav>
+        <p class="text-muted persianDate" data-timestamp="{{page.date | date: '%s'}}"></p>
+        <p class="lead">{{page.content}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row masonry" data-masonry='{"originLeft": false, "percentPosition": true }'>
+      {% if page.gallery%}{% assign gallery = site.static_files | where_exp:"item", "item.path contains page.gallery "  %}{% for file in gallery %}{% assign filenameparts = file.path | split: "/" %}{% assign filename = filenameparts | last | replace: file.extname,"" %}
+      <div class="col-sm-12 col-lg-6 p-1">
+        <div class="card rounded-0 bg-white p-3 border-3 border-0">
+          <a data-modal="bs-lightbox" href="{{ file.path | relative_url }}" title="{{ filename }}"><img src="{{ file.path | relative_url }}" class="card-img-top" alt="..."></a>
+        </div>
+      </div>
+      {%endfor%}{%endif%}
+    </div>
+  </div>
+</section>
+<script type="text/javascript" src="/assets/vendors/bs5lightbox.js"></script>

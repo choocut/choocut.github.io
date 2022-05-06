@@ -1,0 +1,35 @@
+{% for category in post.categories %}{% assign cat = site.categories | where: 'slug', category | first %}
+{% if cat %}{% assign botcat = cat.title %}{% assign botcaturl = cat.url %}{% endif %}
+{% endfor %}
+<div class="col-sm-12 col-lg-6 p-1">
+  <div class="card rounded-0 bg-white p-3 border-3 border-0">
+    {% if post.gallery%}
+    <div id="carousel{{post.slug}}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+      <div class="carousel-indicators">
+        {% assign gallery = site.static_files | where_exp:"item", "item.path contains post.gallery "  %}{% for file in gallery %}{% assign filenameparts = file.path | split: "/" %}{% assign filename = filenameparts | last | replace: file.extname,"" %}
+        <button type="button" data-bs-target="#carousel{{post.slug}}" data-bs-slide-to="{{forloop.index}}" {%if forloop.index == 1 %} class="active" aria-current="true" {%endif%} aria-label="{{filename}}"></button>
+        {% endfor %}
+      </div>
+      <div class="carousel-inner">
+        {% assign gallery = site.static_files | where_exp:"item", "item.path contains post.gallery "  %}{% for file in gallery %}{% assign filenameparts = file.path | split: "/" %}{% assign filename = filenameparts | last | replace: file.extname,"" %}
+        <div class="carousel-item {%if forloop.index == 1 %}active{%endif%}">
+          <img src="{{ file.path | relative_url }}" class="d-block w-100" alt="...">
+        </div>
+        {% endfor %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{post.slug}}" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel{{post.slug}}" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    {%endif%}
+    <div class="card-body text-center p-1">
+      <h3 class="card-title p-0 m-0"><a class="text-reset" href="{{post.url}}">{{post.title}}</a></h3>
+      <small class="font-weight-bold"><a class="text-reset" href="{{botcaturl}}">{{botcat}} </a> | <span class="persianDate" data-timestamp="{{post.date | date: '%s'}}"></span></small>
+    </div>
+  </div>
+</div>

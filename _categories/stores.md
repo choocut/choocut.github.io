@@ -1,0 +1,4 @@
+---
+title: فروشگاه
+slug: stores
+---

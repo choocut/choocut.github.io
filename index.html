@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<section class="m-5">
+  <div class="container bg-white-75 p-3" >
+    <div class="row ">
+      <div class="col-12">
+        <h1>{{site.title}}: {{site.subTitle}}</h1>
+        <p class="lead">{{site.description}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row masonry" data-masonry='{"originLeft": false, "percentPosition": true }'>
+      {% for post in site.posts%}
+      {%include card.html%}
+      {%endfor%}
+    </div>
+  </div>
+</section>

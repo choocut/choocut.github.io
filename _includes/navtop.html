@@ -1,0 +1,43 @@
+<nav class="navbar navbar-light bg-transparent ">
+    <div class="container-fluid">
+      <div class="navbar-brand">
+        <button class="btn btn-transparent" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><span class="navbar-toggler-icon"></span></button>
+        <a href="/" class="h1">{{site.title}}</a>
+      </div>
+    </div>
+</nav>
+<div class="offcanvas offcanvas-start bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdroped with scrolling</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="card bg-transparent border-0 text-light">
+      <img src="/assets/img/navidmahani.png" class="card-img-top mx-auto" style="width:100px;" alt="...">
+      <div class="card-body  text-center">
+        <h2 class="card-title">{{site.title}}</h2>
+        <h5>{{site.subTitle}}</h5>
+      </div>
+      <ul class="list-group list-group-flush bg-dark">
+        {% for item in site.data.topnav%}
+        <li class="list-group-item list-group-item-action bg-dark text-light lead"><a class="text-reset" href="{{item.link}}">{{item.label}}</a></li>
+        {%endfor%}
+      </ul>
+      <div class="card-body">
+        <h4>آخرین کارها</h4>
+        <ul class="list-group list-group-flush bg-dark">
+          {% for post in site.posts limit:1%}
+          <li class="list-group-item list-group-item-action bg-dark text-light"><a class="text-reset" href="{{post.url}}">{{post.title}}</a></li>
+          {%endfor%}
+        </ul>
+      </div>
+      <div class="card-body">
+        <h4 class="mt-lg-0 mt-sm-4">تماس</h4>
+        <p><i class="bi bi-geo-alt-fill"></i>تهران - بزرگراه امام رضا - شهرک صنعتی خاوران - کوی درودگران</p>
+        <p class="mb-0" dir="ltr"><i class="bi bi-telephone-fill"></i> 0912502275</p>
+        <p  dir="ltr"><i class="bi bi-instagram"></i> <a href="https://instagram.com/choocut">@choocut</a></p>
+      </div>
+    </div>
+    <p>Try scrolling the rest of the page to see this option in action.</p>
+  </div>
+</div>
