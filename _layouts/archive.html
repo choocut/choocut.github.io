@@ -20,7 +20,7 @@ layout: default
 </section>
 <section>
   <div class="container">
-    <div class="row masonry" data-masonry='{"originLeft": false, "percentPosition": true }'>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
       {% assign filtered_posts = site.posts | where: pagecollection.label, page.slug  %}
       {% for post in filtered_posts %}
       {% include card.html%}

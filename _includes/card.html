@@ -1,8 +1,8 @@
 {% for category in post.categories %}{% assign cat = site.categories | where: 'slug', category | first %}
 {% if cat %}{% assign botcat = cat.title %}{% assign botcaturl = cat.url %}{% endif %}
 {% endfor %}
-<div class="col-sm-12 col-lg-6 p-1">
-  <div class="card rounded-0 bg-white p-3 border-3 border-0">
+<div class="col">
+  <div class="card h-100 rounded-0 bg-white p-3 border-3 border-0">
     {% if post.gallery%}
     <div id="carousel{{post.slug}}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
       <div class="carousel-indicators">
@@ -13,7 +13,7 @@
       <div class="carousel-inner">
         {% assign gallery = site.static_files | where_exp:"item", "item.path contains post.gallery "  %}{% for file in gallery %}{% assign filenameparts = file.path | split: "/" %}{% assign filename = filenameparts | last | replace: file.extname,"" %}
         <div class="carousel-item {%if forloop.index == 1 %}active{%endif%}">
-          <img src="//images.weserv.nl/?url=choocut.github.io{{ file.path | relative_url }}&w=500&output=jpg&q=50" class="d-block w-100" alt="...">
+          <img src="//images.weserv.nl/?url=choocut.github.io{{ file.path | relative_url }}&w=500&h=500&fit=cover&output=jpg&q=50" class="d-block w-100" alt="...">
         </div>
         {% endfor %}
       </div>
